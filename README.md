@@ -1,7 +1,7 @@
 # Sistem Pengaduan Sekolah Anonim — MVP
 
-Fullstack app sesuai BRD & Class Diagram:
-- Backend: Node.js + Express + SQLite (mudah dipindah ke MySQL nanti)
+Fullstack app:
+- Backend: Node.js + Express + SQLite (mudah dipindah ke MySQL nanti jika ada pengembangan selanjutnya)
 - Frontend: React + Vite + Tailwind CSS
 
 ## Struktur
