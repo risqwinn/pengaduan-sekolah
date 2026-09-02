@@ -8,9 +8,14 @@ import { fileURLToPath } from "url";
 // compilation needed, unlike better-sqlite3 which requires Visual Studio
 // Build Tools on Windows.
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dataDir = path.join(__dirname, "..", "data");
+
+// DB_PATH lets you point the database at a persistent mount (e.g. a Railway
+// Volume) in production, since most hosting platforms wipe the local
+// filesystem on every redeploy unless a volume is explicitly attached.
+// Locally (no DB_PATH set), it falls back to backend/data/app.db as before.
+const dbPath = process.env.DB_PATH || path.join(__dirname, "..", "data", "app.db");
+const dataDir = path.dirname(dbPath);
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
-const dbPath = path.join(dataDir, "app.db");
 export const db = new DatabaseSync(dbPath);
 
 db.exec("PRAGMA journal_mode = WAL;");
